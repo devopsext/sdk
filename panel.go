@@ -566,8 +566,11 @@ type Target struct {
 	CrossSeriesReducer string                    `json:"crossSeriesReducer,omitempty"`
 	PerSeriesAligner   string                    `json:"perSeriesAligner,omitempty"`
 	ValueType          string                    `json:"valueType,omitempty"`
-	GroupBy            []string                  `json:"groupBy,omitempty"`
-	Tags               []struct {
+
+	// it doesn't work wirh influxDB
+	//GroupBy            []string                  `json:"groupBy,omitempty"`
+	GroupBy []interface{} `json:"groupBy,omitempty"`
+	Tags    []struct {
 		Key      string `json:"key,omitempty"`
 		Operator string `json:"operator,omitempty"`
 		Value    string `json:"value,omitempty"`
