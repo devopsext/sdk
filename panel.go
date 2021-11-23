@@ -488,7 +488,9 @@ type Target struct {
 	Hide       bool   `json:"hide,omitempty"`
 
 	// For PostgreSQL
-	Table        string `json:"table,omitempty"`
+	// it doesn't work with Zabbix
+	Table interface{} `json:"table,omitempty"`
+	//Table        string `json:"table,omitempty"`
 	TimeColumn   string `json:"timeColumn,omitempty"`
 	MetricColumn string `json:"metricColumn,omitempty"`
 	RawSql       string `json:"rawSql,omitempty"`
@@ -502,10 +504,13 @@ type Target struct {
 		Params   []string `json:"params,omitempty"`
 		Datatype string   `json:"datatype,omitempty"`
 	} `json:"where,omitempty"`
-	Group []struct {
+
+	// it doesn't work with Zabbix
+	Group interface{} `json:"group,omitempty"`
+	/*Group []struct {
 		Type   string   `json:"type,omitempty"`
 		Params []string `json:"params,omitempty"`
-	} `json:"group,omitempty"`
+	} `json:"group,omitempty"`*/
 
 	// For Prometheus
 	Expr           string `json:"expr,omitempty"`
@@ -567,14 +572,33 @@ type Target struct {
 	PerSeriesAligner   string                    `json:"perSeriesAligner,omitempty"`
 	ValueType          string                    `json:"valueType,omitempty"`
 
-	// it doesn't work wirh influxDB
+	// it doesn't work with influxDB
 	//GroupBy            []string                  `json:"groupBy,omitempty"`
-	GroupBy []interface{} `json:"groupBy,omitempty"`
-	Tags    []struct {
+	GroupBy interface{} `json:"groupBy,omitempty"`
+
+	// it doesn't work with Zabbix
+	Tags interface{} `json:"tags,omitempty"`
+
+	/*Tags []struct {
 		Key      string `json:"key,omitempty"`
 		Operator string `json:"operator,omitempty"`
 		Value    string `json:"value,omitempty"`
-	} `json:"tags,omitempty"`
+	} `json:"tags,omitempty"` */
+
+	// Json
+	Fields  interface{} `json:"fields,omitempty"`
+	Params  interface{} `json:"params,omitempty"`
+	Method  interface{} `json:"method,omitempty"`
+	URLPath interface{} `json:"urlPath,omitempty"`
+	Body    interface{} `json:"body,omitempty"`
+
+	//Zabbix
+	Application interface{} `json:"application,omitempty"`
+	Functions   interface{} `json:"functions,omitempty"`
+	Host        interface{} `json:"host,omitempty"`
+	Item        interface{} `json:"item,omitempty"`
+	QueryType   interface{} `json:"queryType,omitempty"`
+	//ResultFormat
 }
 
 // StackdriverAlignOptions defines the list of alignment options shown in
