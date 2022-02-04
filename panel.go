@@ -602,6 +602,9 @@ type Target struct {
 	Item        interface{} `json:"item,omitempty"`
 	QueryType   interface{} `json:"queryType,omitempty"`
 	//ResultFormat
+
+	//Clickhouse
+	Database string `json:"database,omitempty"`
 }
 
 // StackdriverAlignOptions defines the list of alignment options shown in
