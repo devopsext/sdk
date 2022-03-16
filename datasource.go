@@ -52,3 +52,8 @@ type DatasourceType struct {
 	ServiceName string `json:"serviceName"`
 	Type        string `json:"type"`
 }
+
+type DatasourceRef struct {
+	Type string `json:"type"`
+	Uid  string `json:"uid"`
+}

@@ -23,6 +23,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 )
 
 // Each panel may be one of these types.
@@ -1135,4 +1136,16 @@ func incRefID(refID string) string {
 	ordinal := int(firstLetter)
 	ordinal++
 	return string(rune(ordinal))
+}
+
+func GetDatasourceType(ds interface{}) string {
+	df, ok := ds.(DatasourceRef)
+	if ok {
+		return df.Type
+	}
+	res := fmt.Sprintf("%v", ds)
+	if res == "<nil>" {
+		res = ""
+	}
+	return res
 }
