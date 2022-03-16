@@ -23,6 +23,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 )
 
 // Each panel may be one of these types.
@@ -64,9 +65,9 @@ type (
 	}
 	panelType   int8
 	CommonPanel struct {
-		Datasource *string `json:"datasource,omitempty"` // metrics
-		Editable   bool    `json:"editable"`
-		Error      bool    `json:"error"`
+		Datasource interface{} `json:"datasource,omitempty"` // metrics
+		Editable   bool        `json:"editable"`
+		Error      bool        `json:"error"`
 		GridPos    struct {
 			H *int `json:"h,omitempty"`
 			W *int `json:"w,omitempty"`
@@ -483,9 +484,9 @@ type (
 
 // for an any panel
 type Target struct {
-	RefID      string `json:"refId"`
-	Datasource string `json:"datasource,omitempty"`
-	Hide       bool   `json:"hide,omitempty"`
+	RefID      string      `json:"refId"`
+	Datasource interface{} `json:"datasource,omitempty"`
+	Hide       bool        `json:"hide,omitempty"`
 
 	// For PostgreSQL
 	// it doesn't work with Zabbix
@@ -1135,4 +1136,16 @@ func incRefID(refID string) string {
 	ordinal := int(firstLetter)
 	ordinal++
 	return string(rune(ordinal))
+}
+
+func GetDatasourceType(ds interface{}) string {
+	df, ok := ds.(DatasourceRef)
+	if ok {
+		return df.Type
+	}
+	res := fmt.Sprintf("%v", ds)
+	if res == "<nil>" {
+		res = ""
+	}
+	return res
 }

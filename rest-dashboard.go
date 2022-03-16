@@ -136,7 +136,7 @@ func (r *Client) getDashboard(ctx context.Context, path string) (Board, BoardPro
 	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.UseNumber()
 	if err := dec.Decode(&result.Board); err != nil {
-		return Board{}, BoardProperties{}, errors.Wrap(err, "unmarshal board")
+		return Board{}, BoardProperties{}, errors.Wrap(err, "getDashboard unmarshal board")
 	}
 	return result.Board, bp, err
 }
@@ -173,7 +173,7 @@ func (r *Client) getRawDashboard(ctx context.Context, path string) ([]byte, Boar
 	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.UseNumber()
 	if err := dec.Decode(&result); err != nil {
-		return nil, BoardProperties{}, errors.Wrap(err, "unmarshal board")
+		return nil, BoardProperties{}, errors.Wrap(err, "getRawDashboard unmarshal board")
 	}
 	return []byte(result.Board), result.Meta, err
 }
