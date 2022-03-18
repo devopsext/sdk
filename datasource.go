@@ -24,6 +24,7 @@ package sdk
 type Datasource struct {
 	ID                uint        `json:"id"`
 	OrgID             uint        `json:"orgId"`
+	UID               string      `json:"uid"`
 	Name              string      `json:"name"`
 	Type              string      `json:"type"`
 	Access            string      `json:"access"` // direct or proxy
@@ -51,9 +52,4 @@ type DatasourceType struct {
 	PluginType  string `json:"pluginType"`
 	ServiceName string `json:"serviceName"`
 	Type        string `json:"type"`
-}
-
-type DatasourceRef struct {
-	Type string `json:"type"`
-	Uid  string `json:"uid"`
 }

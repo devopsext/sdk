@@ -1138,10 +1138,15 @@ func incRefID(refID string) string {
 	return string(rune(ordinal))
 }
 
-func GetDatasourceType(ds interface{}) string {
-	df, ok := ds.(DatasourceRef)
+func GetDatasourceUID(ds interface{}) string {
+	df, ok := ds.(map[string]interface{})
 	if ok {
-		return df.Type
+		if uid, found := df["uid"]; found {
+			res := fmt.Sprintf("%v", uid)
+			if res != "<nil>" {
+				return res
+			}
+		}
 	}
 	res := fmt.Sprintf("%v", ds)
 	if res == "<nil>" {
