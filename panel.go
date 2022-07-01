@@ -609,16 +609,16 @@ type Target struct {
 }
 
 type ZabbixFunction struct {
-	HashKey string `json:"$$hashKey"`
-	Def     struct {
-		Category      string `json:"category"`
-		DefaultParams []int  `json:"defaultParams"`
-		Name          string `json:"name"`
-		Params        []struct {
-			Name    string    `json:"name"`
-			Options []float64 `json:"options"`
-			Type    string    `json:"type"`
-		} `json:"params"`
+	// HashKey string `json:"$$hashKey"`
+	Def struct {
+		Category string `json:"category"`
+		// DefaultParams []int  `json:"defaultParams"`
+		Name string `json:"name"`
+		// Params        []struct {
+		//	Name    string    `json:"name"`
+		//	Options []float64 `json:"options"`
+		//	Type    string    `json:"type"`
+		// } `json:"params"`
 	} `json:"def"`
 	Params []string `json:"params"`
 	Text   string   `json:"text"`
