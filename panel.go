@@ -597,15 +597,31 @@ type Target struct {
 	Body    interface{} `json:"body,omitempty"`
 
 	//Zabbix
-	Application interface{} `json:"application,omitempty"`
-	Functions   interface{} `json:"functions,omitempty"`
-	Host        interface{} `json:"host,omitempty"`
-	Item        interface{} `json:"item,omitempty"`
-	QueryType   interface{} `json:"queryType,omitempty"`
+	Application interface{}      `json:"application,omitempty"`
+	Functions   []ZabbixFunction `json:"functions,omitempty"`
+	Host        interface{}      `json:"host,omitempty"`
+	Item        interface{}      `json:"item,omitempty"`
+	QueryType   interface{}      `json:"queryType,omitempty"`
 	//ResultFormat
 
 	//Clickhouse
 	Database string `json:"database,omitempty"`
+}
+
+type ZabbixFunction struct {
+	// HashKey string `json:"$$hashKey"`
+	Def struct {
+		Category string `json:"category"`
+		// DefaultParams []int  `json:"defaultParams"`
+		Name string `json:"name"`
+		// Params        []struct {
+		//	Name    string    `json:"name"`
+		//	Options []float64 `json:"options"`
+		//	Type    string    `json:"type"`
+		// } `json:"params"`
+	} `json:"def"`
+	Params []string `json:"params"`
+	Text   string   `json:"text"`
 }
 
 // StackdriverAlignOptions defines the list of alignment options shown in
